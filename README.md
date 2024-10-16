@@ -1,4 +1,4 @@
-# RAG_Project
+# RAG\_Project
 
 ## Overview
 
@@ -36,6 +36,10 @@ RAG_Project/
 |   |-- package-lock.json
 |   |-- package.json
 |   |-- README.md
+|-- images/
+|   |-- question1.png
+|   |-- question2.png
+|   |-- question3.png
 ```
 
 ## Prerequisites
@@ -143,22 +147,49 @@ RAG_Project/
    az webapp create --resource-group <ResourceGroup> --plan <AppServicePlan> --name rag-frontend-app --deployment-container-image-name <your-acr>.azurecr.io/rag-frontend:latest
    ```
 
+## Live Application
+
+The application is deployed and running live at: [RAG Frontend Live](https://rag-frontend-app-bi.azurewebsites.net/)
+
+## Example Usage
+
+### Example Questions and Responses
+
+Here are some snapshots of example questions and their responses to demonstrate the application:
+
+1. **Question:** How many respondents are between 18 and 24 years old for the Christmas survey?
+   
+   ![Question 1](images/question1.png)
+
+   - **Response:** There are a total of 81 respondents between the ages of 18 and 24 for the Christmas survey.
+
+2. **Question:** What is the most common feedback regarding sustainability initiatives?
+   
+   ![Question 2](images/question2.png)
+
+   - **Response:** Based on the provided survey data, the most common feedback regarding sustainability initiatives is that they are very important to the respondent. Specifically, the respondent from the North East of the UK who identifies as male and aged 18-24 strongly values the sustainability credentials of the brands and products they buy.
+
+3. **Question:** Which gender is more likely to purchase brands at Christmas in Dublin?
+   
+   ![Question 3](images/question3.png)
+
+   - **Response:** Out of the total sample of 1002 respondents, 281 were from Dublin and 490 were male. Therefore, it can be inferred that male respondents are more likely to purchase brands at Christmas in Dublin.
+
+These examples illustrate how the backend processes and retrieves relevant information from the datasets.
+
 ## Troubleshooting
 
 1. **Port Issues**
+
    - Ensure the correct port is exposed in Dockerfiles (port `8000` for backend, port `80` for frontend).
    - Update Azure Web App configuration settings if needed, ensuring the ports are set correctly (`WEBSITES_PORT`).
 
 2. **Azure Secrets Detected**
+
    - Before pushing code to GitHub, make sure sensitive information like API keys are not included.
    - Add `.env` files to `.gitignore` to prevent accidental commits.
 
 3. **Backend or Frontend Failing to Start**
+
    - Review Azure logs using the Azure portal or CLI to check container errors.
    - Ensure `CORS` is configured correctly in the backend to allow requests from the frontend.
-
-## Live Application
-
-You can access the live version of the application here: [RAG Frontend Application](https://rag-frontend-app-bi.azurewebsites.net/)
-
-
